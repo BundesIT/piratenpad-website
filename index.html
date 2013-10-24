@@ -51,34 +51,6 @@ $(function() {
   });
 })
 
-/******************************************************************************
- * The following code comes from Etherpad-Lite with the following license:
- *
- * Copyright 2011 Peter Martischka, Primary Technology.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License. 
- */
-function randomPadName()
-{
-	var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	var string_length = 10;
-	var randomstring = '';
-	for (var i = 0; i < string_length; i++)
-	{
-		var rnum = Math.floor(Math.random() * chars.length);
-		randomstring += chars.substring(rnum, rnum + 1);
-	}
-	return randomstring;
-}
-/******************************************************************************/
-
 function openPadUrl()
 {
 	var customPadName = $('#customPadUrl').val();
@@ -95,7 +67,7 @@ function openLitePadUrl()
 {
 	var customPadName = $('#customPadUrl').val();
 	if (customPadName == "") {
-		loadPadUrl("p/" + randomPadName());
+		loadPadUrl("randomPad");
 	} else {
 		loadPadUrl("p/" + customPadName);
 	}
@@ -107,11 +79,11 @@ function loadPadUrl(url)
 }
 
 $(function() {
-	var allPadsCount = [['2013-05-30', 308360], ['2013-08-09', 331188], ['2013-09-02', 337824]];
-	var teamPadsCount = [['2013-05-30', 138621], ['2013-08-09', 150603], ['2013-09-02', 154213]];
-	var publicPadsCount = [['2013-05-30', 169739], ['2013-08-09', 180585], ['2013-09-02', 183621]];
-	var proAccountsCount = [['2013-05-30', 42863], ['2013-08-09', 52673], ['2013-09-02', 53243]];
-	var proDomainsCount = [['2013-05-30', 10586], ['2013-08-09', 11086], ['2013-09-02', 11202]];
+	var allPadsCount = [['2013-05-30', 308360], ['2013-08-09', 331188], ['2013-09-02', 337824], ['2013-10-01', 346634]];
+	var teamPadsCount = [['2013-05-30', 138621], ['2013-08-09', 150603], ['2013-09-02', 154213], ['2013-10-01', 158593]];
+	var publicPadsCount = [['2013-05-30', 169739], ['2013-08-09', 180585], ['2013-09-02', 183621], ['2013-10-01', 188041]];
+	var proAccountsCount = [['2013-05-30', 42863], ['2013-08-09', 52673], ['2013-09-02', 53243], ['2013-10-01', 54105]];
+	var proDomainsCount = [['2013-05-30', 10586], ['2013-08-09', 11086], ['2013-09-02', 11202], ['2013-10-01', 11379]];
 	var plot1 = $.jqplot ('stats', [allPadsCount, teamPadsCount, publicPadsCount, proAccountsCount, proDomainsCount],
 	{
 		title:'Padstatistik',
