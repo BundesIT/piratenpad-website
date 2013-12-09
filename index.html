@@ -79,11 +79,46 @@ function loadPadUrl(url)
 }
 
 $(function() {
-	var allPadsCount = [['2013-05-30', 308360], ['2013-08-09', 331188], ['2013-09-02', 337824], ['2013-10-01', 346634]];
-	var teamPadsCount = [['2013-05-30', 138621], ['2013-08-09', 150603], ['2013-09-02', 154213], ['2013-10-01', 158593]];
-	var publicPadsCount = [['2013-05-30', 169739], ['2013-08-09', 180585], ['2013-09-02', 183621], ['2013-10-01', 188041]];
-	var proAccountsCount = [['2013-05-30', 42863], ['2013-08-09', 52673], ['2013-09-02', 53243], ['2013-10-01', 54105]];
-	var proDomainsCount = [['2013-05-30', 10586], ['2013-08-09', 11086], ['2013-09-02', 11202], ['2013-10-01', 11379]];
+	var allPadsCount = [
+        ['2013-05-30', 308360],
+        ['2013-08-09', 331188],
+        ['2013-09-02', 337824],
+        ['2013-10-01', 346634],
+        ['2013-11-15', 361042],
+        ['2013-12-09', 369240]
+    ];
+	var teamPadsCount = [
+        ['2013-05-30', 138621],
+        ['2013-08-09', 150603],
+        ['2013-09-02', 154213],
+        ['2013-10-01', 158593],
+        ['2013-11-15', 165559],
+        ['2013-12-09', 169154]
+    ];
+	var publicPadsCount = [
+        ['2013-05-30', 169739],
+        ['2013-08-09', 180585],
+        ['2013-09-02', 183621],
+        ['2013-10-01', 188041],
+        ['2013-11-15', 195483],
+        ['2013-12-09', 200086]
+    ];
+	var proAccountsCount = [
+        ['2013-05-30', 42863],
+        ['2013-08-09', 52673],
+        ['2013-09-02', 53243],
+        ['2013-10-01', 54105],
+        ['2013-11-15', 55829],
+        ['2013-12-09', 56926]
+    ];
+	var proDomainsCount = [
+        ['2013-05-30', 10586],
+        ['2013-08-09', 11086],
+        ['2013-09-02', 11202],
+        ['2013-10-01', 11379],
+        ['2013-11-15', 11757],
+        ['2013-12-09', 12013]
+    ];
 	var plot1 = $.jqplot ('stats', [allPadsCount, teamPadsCount, publicPadsCount, proAccountsCount, proDomainsCount],
 	{
 		title:'Padstatistik',
@@ -256,15 +291,15 @@ $(function() {
 			<h1>Impressum</h1>
 			<h3>Supportanfragen an <a class="support-mail" href="mailto:piratenpad@helpdesk.piratenpartei.de">piratenpad@helpdesk.piratenpartei.de</a></h3>
 			<p>
-			Dienstanbieter dieser Seite ist die Piratenpartei Deutschland vertreten durch den Vorsitzenden Bernd Schlömer<br>
+			Dienstanbieter dieser Seite ist die Piratenpartei Deutschland vertreten durch den Vorsitzenden Thorsten Wirth<br>
 			</p>
 			<p>
 			Redaktionell verantwortlich gemäß §5 TMG:<br>
-			Bernd Schlömer<br>
+			Thorsten Wirth<br>
 			Piratenpartei Deutschland<br>
 			Pflugstraße 9a<br>
 			10115 Berlin<br>
-			Email: bernd.schloemer [at] piratenpartei . de -- (statt "at", bitte "@" eingeben)<br>
+			Email: thorsten.wirth [at] piratenpartei . de -- (statt "at", bitte "@" eingeben)<br>
 			</p>
 			Ladungsfähige Anschrift gemäß TMG:<br>
 			Piratenpartei Deutschland<br>
