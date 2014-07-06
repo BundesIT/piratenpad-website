@@ -2,8 +2,7 @@ body {
 	margin: 0;
 	padding: 0 0 10px 0;
 
-	#font-family: 'HelveticaNeue-Light',Helvetica,Arial,sans-serif;
-	font-family: Verdana,'Vera Sans';
+	font-family: Verdana,'Vera Sans',sans-serif;
 }
 
 div#page {
