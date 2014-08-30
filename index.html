@@ -53,7 +53,7 @@ $(function() {
 
 function openPadUrl()
 {
-	var customPadName = $('#customPadUrl').val();
+	var customPadName = replaceSpecialChars($('#customPadUrl').val());
 	var customPadUrl = "";
 	if (customPadName == "") {
 		customPadUrl = "ep/pad/newpad";
@@ -65,7 +65,7 @@ function openPadUrl()
 
 function openLitePadUrl()
 {
-	var customPadName = $('#customPadUrl').val();
+	var customPadName = replaceSpecialChars($('#customPadUrl').val());
 	if (customPadName == "") {
 		loadPadUrl("randomPad");
 	} else {
@@ -76,6 +76,10 @@ function openLitePadUrl()
 function loadPadUrl(url)
 {
 	window.location = "//piratenpad.de/" + url;
+}
+
+function replaceSpecialChars(text) {
+    return text.replace(/ /g, "_");
 }
 
 $(function() {
@@ -91,7 +95,9 @@ $(function() {
         ['2014-03-19', 402730],
         ['2014-04-13', 410449],
         ['2014-05-15', 420358],
-        ['2014-06-13', 429128]
+        ['2014-06-13', 429128],
+        ['2014-07-14', 437507],
+        ['2014-08-23', 446433]
     ];
 	var teamPadsCount = [
         ['2013-05-30', 138621],
@@ -105,7 +111,9 @@ $(function() {
         ['2014-03-19', 185308],
         ['2014-04-13', 189135],
         ['2014-05-15', 193729],
-        ['2014-06-13', 197569]
+        ['2014-06-13', 197569],
+        ['2014-07-14', 201195],
+        ['2014-08-23', 205623]
     ];
 	var publicPadsCount = [
         ['2013-05-30', 169739],
@@ -119,7 +127,9 @@ $(function() {
         ['2014-03-19', 217422],
         ['2014-04-13', 221314],
         ['2014-05-15', 226629],
-        ['2014-06-13', 231559]
+        ['2014-06-13', 231559],
+        ['2014-07-14', 236312],
+        ['2014-08-23', 240810]
     ];
 	var proAccountsCount = [
         ['2013-05-30', 42863],
@@ -133,7 +143,9 @@ $(function() {
         ['2014-03-19', 60819],
         ['2014-04-13', 61814],
         ['2014-05-15', 63006],
-        ['2014-06-13', 64103]
+        ['2014-06-13', 64103],
+        ['2014-07-14', 65325],
+        ['2014-08-23', 66418]
     ];
 	var proDomainsCount = [
         ['2013-05-30', 10586],
@@ -147,7 +159,9 @@ $(function() {
         ['2014-03-19', 12843],
         ['2014-04-13', 13036],
         ['2014-05-15', 13297],
-        ['2014-06-13', 13549]
+        ['2014-06-13', 13549],
+        ['2014-07-14', 13792],
+        ['2014-08-23', 14041]
     ];
 	var plot1 = $.jqplot ('stats', [allPadsCount, teamPadsCount, publicPadsCount, proAccountsCount, proDomainsCount],
 	{
