@@ -51,7 +51,7 @@ $(function() {
   });
 })
 
-function openPadUrl()
+/*function openPadUrl()
 {
 	var customPadName = replaceSpecialChars($('#customPadUrl').val());
 	var customPadUrl = "";
@@ -61,7 +61,7 @@ function openPadUrl()
 		customPadUrl = customPadName;
 	}
 	loadPadUrl(customPadUrl);
-}
+}*/
 
 function openLitePadUrl()
 {
@@ -97,7 +97,14 @@ $(function() {
         ['2014-05-15', 420358],
         ['2014-06-13', 429128],
         ['2014-07-14', 437507],
-        ['2014-08-23', 446433]
+        ['2014-08-23', 446433],
+        ['2014-10-22', 460680],
+        ['2014-11-14', 466965],
+        ['2014-12-16', 476324],
+        ['2015-02-01', 486741],
+        ['2015-03-15', 496576],
+        ['2015-04-15', 503307],
+        ['2015-05-15', 510402]
     ];
 	var teamPadsCount = [
         ['2013-05-30', 138621],
@@ -113,7 +120,14 @@ $(function() {
         ['2014-05-15', 193729],
         ['2014-06-13', 197569],
         ['2014-07-14', 201195],
-        ['2014-08-23', 205623]
+        ['2014-08-23', 205623],
+        ['2014-10-22', 212490],
+        ['2014-11-14', 215319],
+        ['2014-12-16', 219056],
+        ['2015-02-01', 223512],
+        ['2015-03-15', 228351],
+        ['2015-04-15', 231739],
+        ['2015-05-15', 234978]
     ];
 	var publicPadsCount = [
         ['2013-05-30', 169739],
@@ -129,7 +143,14 @@ $(function() {
         ['2014-05-15', 226629],
         ['2014-06-13', 231559],
         ['2014-07-14', 236312],
-        ['2014-08-23', 240810]
+        ['2014-08-23', 240810],
+        ['2014-10-22', 248190],
+        ['2014-11-14', 251646],
+        ['2014-12-16', 257268],
+        ['2015-02-01', 263229],
+        ['2015-03-15', 268225],
+        ['2015-04-15', 271568],
+        ['2015-05-15', 275424]
     ];
 	var proAccountsCount = [
         ['2013-05-30', 42863],
@@ -145,7 +166,14 @@ $(function() {
         ['2014-05-15', 63006],
         ['2014-06-13', 64103],
         ['2014-07-14', 65325],
-        ['2014-08-23', 66418]
+        ['2014-08-23', 66418],
+        ['2014-10-22', 68195],
+        ['2014-11-14', 69065],
+        ['2014-12-16', 70218],
+        ['2015-02-01', 71344],
+        ['2015-03-15', 72646],
+        ['2015-04-15', 73609],
+        ['2015-05-15', 74552]
     ];
 	var proDomainsCount = [
         ['2013-05-30', 10586],
@@ -161,7 +189,14 @@ $(function() {
         ['2014-05-15', 13297],
         ['2014-06-13', 13549],
         ['2014-07-14', 13792],
-        ['2014-08-23', 14041]
+        ['2014-08-23', 14041],
+        ['2014-10-22', 14470],
+        ['2014-11-14', 14689],
+        ['2014-12-16', 14955],
+        ['2015-02-01', 15225],
+        ['2015-03-15', 15506],
+        ['2015-04-15', 15716],
+        ['2015-05-15', 15928]
     ];
 	var plot1 = $.jqplot ('stats', [allPadsCount, teamPadsCount, publicPadsCount, proAccountsCount, proDomainsCount],
 	{
@@ -234,11 +269,8 @@ $(function() {
 				Padname:<br>
 				<input id="randomPad" type="checkbox" checked="checked" />zufällig<br>
 				<input id="customPadUrl" type="text" placeholder="zufälliger Padname" /><br>
-				<a href="#" onclick="openPadUrl()">
-					<div class="button">Neues Pad</div>
-				</a>
 				<a href="#" onclick="openLitePadUrl()">
-					<div class="button">Neues Lite-Pad</div>
+					<div class="button">Neues Pad</div>
 				</a>
 				<br>
 				<br>
@@ -333,7 +365,7 @@ $(function() {
 		<a class="scroll-target" name="impressum"></a>
 		<div class="centered chapter">
 			<h1>Impressum</h1>
-			<h3>Supportanfragen an <a class="support-mail" href="mailto:piratenpad@helpdesk.piratenpartei.de">piratenpad@helpdesk.piratenpartei.de</a></h3>
+			<h3>Supportanfragen an <a class="support-mail" href="mailto:support@it.piratenpartei.de">support@it.piratenpartei.de</a></h3>
 			<p>
 			Dienstanbieter dieser Seite ist die Piratenpartei Deutschland vertreten durch den Vorsitzenden Stefan Körner<br>
 			</p>
@@ -343,7 +375,7 @@ $(function() {
 			Piratenpartei Deutschland<br>
 			Pflugstraße 9a<br>
 			10115 Berlin<br>
-			Email: stefan.koerner [at] piratenpartei-bayern . de -- (statt "at", bitte "@" eingeben)<br>
+			Email: geschaeftsstelle [at] piratenpartei . de -- (statt "at", bitte "@" eingeben)<br>
 			</p>
 			Ladungsfähige Anschrift gemäß TMG:<br>
 			Piratenpartei Deutschland<br>
@@ -354,7 +386,7 @@ $(function() {
 			Piratenpartei Deutschland<br>
 			Pflugstraße 9a<br>
 			10115 Berlin<br>
-			Fon: +49 30 27572040<br>
+			Fon: +49 30 3464619-71<br>
 			Fax: +49 30 609897-517<br>
 			E-Mail: bgs_anfragen [at] piratenpartei.de -- (statt "at", bitte "@" eingeben)<br>
 			</p>
