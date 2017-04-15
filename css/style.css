@@ -1,16 +1,49 @@
+/* General declarations */
 body {
-	margin: 0;
-	padding: 0 0 10px 0;
-
 	font-family: Verdana,'Vera Sans',sans-serif;
 }
 
-div#page {
-	
+.centered {
+	width: 70%;
+	margin: 0 auto;
+}
+
+.chapter {
+	border-bottom: 1px solid #CCCCCC;
+	border-radius: 18px 18px 18px 18px;
+	box-shadow: 0 15px 15px -5px #FF8800;
+	padding: 15px;
 }
 
 .faq-text {
 	display: none;
+}
+
+.faq-closed:before {
+	content: "►"
+}
+
+.faq-open:before {
+	content: "▼"
+}
+
+.faq-headline {
+	cursor: pointer;
+	color: #555;
+}
+
+.faq-headline:hover {
+	color: #FF8800;
+}
+
+.support-mail {
+	text-decoration: none;
+	color: black;
+}
+
+.source-link {
+	font-size: smaller;
+	text-align: center;
 }
 
 a,
@@ -23,21 +56,6 @@ a:hover {
 	text-decoration: none;
 	color: #FF8800;
 }
-.arrow {
-	border: 5px solid #444;
-	font-size: 0;
-	line-height: 0;
-	height: 0;
-	padding: 0;
-	margin-top: 9px;
-	margin-left: -8px;
-	position: absolute;
-}
-.arrow.right {
-	border-top-color:    transparent;
-	border-right-color:  transparent;
-	border-bottom-color: transparent;
-}
 
 .button {
 	display: inline-block;
@@ -49,33 +67,16 @@ a:hover {
 	font-size: 36px;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	color: #fff;
-	background-image: -moz-linear-gradient(top, #ff8800, #ffc880);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ff8800), to(#ffc880));
-    background-image: -webkit-linear-gradient(top, #ff8800, #ffc880);
-    background-image: -o-linear-gradient(top, #ff8800, #ffc880);
-	background-image: -ms-linear-gradient(top, #ff8800, #ffc880);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8800', endColorstr='#ffc880');
-    background-image: linear-gradient(to bottom, #ff8800, #ffc880);
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-khtml-border-radius: 10px;
+	background-image: linear-gradient(to bottom, #ff8800, #ffc880);
 	border-radius: 10px;
-	-moz-box-shadow: 3px 3px 5px 6px #ccc;
-    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-    box-shadow: 3px 3px 5px 6px #ccc;
+	box-shadow: 3px 3px 5px 6px #ccc;
 	transition: background-image 0.5s linear 2s;
 }
 
 .button:hover,
 .button:focus,
 .button:active {
-	background-image: -moz-linear-gradient(top, #ff9900, #ffd980);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ff9900), to(#ffd980));
-    background-image: -webkit-linear-gradient(top, #ff9900, #ffd980);
-    background-image: -o-linear-gradient(top, #ff9900, #ffd980);
-	background-image: -ms-linear-gradient(top, #ff9900, #ffd980);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9900', endColorstr='#ffd980');
-    background-image: linear-gradient(to bottom, #ff9900, #ffd980);
+	background-image: linear-gradient(to bottom, #ff9900, #ffd980);
 }
 
 input.button, button.button {
@@ -83,11 +84,11 @@ input.button, button.button {
 }
 
 input[type=text] {
-	border:1px solid #FF8800;
+	border: 1px solid #FF8800;
 }
 
 input[type=text]:focus {
-	border:2px solid #FF8800;
+	border: 2px solid #FF8800;
 }
 
 h1,
@@ -97,65 +98,21 @@ h4 {
 	color: #FF8800;
 }
 
-.centered {
-	width: 910px;
-	margin: 0 auto;
+div#button-panel {
+	text-align: center;
 }
 
-.chapter {
-    border-bottom: 1px solid #CCCCCC;
-    border-radius: 18px 18px 18px 18px;
-    box-shadow: 0 15px 15px -5px #FF8800;
-    padding: 15px;
-}
-
-div.logo {
-	background: url("../img/pp_logo.png") no-repeat scroll 0 0 #fff;
-    display: block;
-    float: left;
-    height: 88px;
-	width: 241px;
-    margin-left: 6pt;
-    transition: background-color 0.5s linear 0s;
-}
-
-.logo:hover,
-.logo:focus,
-.logo:active {
-	background-color: #FFD980;
-}
-
-div#header {
-	background: none repeat scroll 0 0 #fff;
-  	border-bottom: 1pt solid #aaa;
-  	left: 0;
-	top: 0;
-  	height: 90px;
-  	position: fixed;
-  	right: 0;
-  	z-index: 10;
-  	box-shadow: 0pt 1pt 2pt #777;
-}
-
-div#header div#mobile-nav {
-  display: none; /* see below */
-}
-
-div#header div#nav {
-	float: right;
-  	padding: 0.5pc 0;
+div#plot {
+	padding: 15px;
 }
 
 div#header div#nav li a,
-div#header div#nav li a:active,
-div#header div#mobile-nav li a,
-div#header div#mobile-nav li a:active {
+div#header div#nav li a:active {
 	transition: color 0.25s linear 0s;
-  	color: #555;
-  	font-size: 14pt;
-  	line-height: 60px;
-  	padding: 0 1pc;
-  	text-decoration: none;
+	color: #555;
+	font-size: 14pt;
+	padding: 0 1pc;
+	text-decoration: none;
 	font-weight: bold;
 }
 
@@ -164,88 +121,59 @@ div#header div#nav li {
 }
 
 div#header div#nav li a:hover,
-div#header div#nav li a:focus,
-div#header div#mobile-nav li a:hover,
-div#header div#mobile-nav li a:focus {
-  color: #FF8800;
+div#header div#nav li a:focus {
+	color: #FF8800;
 }
 
 div#content {
-	padding-top: 90px !important;
 	line-height: 1.5;
 }
 
-div#button-panel {
-	text-align: center;
+div#logo {
+	background: url("../img/pp_logo.png") no-repeat scroll 0 center #fff;
+	float: left;
+	height: 90px;
+	width: 242px;
+	margin-left: 6pt;
+	display: table-cell;
 }
 
-.hidden {
-	visibility: hidden;
-	display: none;
+div#header {
+	height: 90px;
+	display: table;
 }
 
-.scroll-target {
-	top: -50px;
-	position: relative;
+div#header div#nav {
+	display: table-cell;
+	vertical-align: middle;
 }
 
-.support-mail {
-	text-decoration: none;
-	color: black;
+div#header div#nav ul {
+	margin:0 auto;
+	padding: 0 0 0 10px;
 }
 
 /* Mobile view */
-@media screen and (max-width: 600px) {
-  body {
-    padding: 0;
-  }
-
-  .centered {
-    width: 100%;
-    margin: 0;
-    margin-left: 10px;
-  }
-  div#header {
-    height: auto;
-    min-height: 20px;
-  }
-  div#header div#nav {
-    float: none;
-    padding: 0;
-    line-height: 20px;
-    font-size: 8px;
-    margin-left: 40px;
-  }
-  div#header div.logo {
-    background: url("../img/flagge.png") no-repeat scroll 0 0 #fff;
-    display: block;
-    height: 58px;
-    width: 58px;
-    margin: 10px 10px;
-    float: left;
-  }
-
-  div#header div#nav li a,
-  div#header div#nav li a:active,
-  div#header div#mobile-nav li a,
-  div#header div#mobile-nav li a:active {
-    line-height: 20px;
-  }
-
-  a.scroll-target {
-    top: -80px !important;
-  }
-
-  div#content {
-    padding-top: 80px !important;
-  }
-
-  .chapter {
-    border-bottom: 1px solid #CCCCCC;
-    border-radius: 0px;
-    box-shadow: none;
-    padding: 0px;
-  }
+@media screen and (max-width: 800px) {
+	.centered {
+		width: 100%;
+		margin: 0;
+	}
+	
+	div#header {
+		height: 80px;
+	}
+	
+	div#header div#logo {
+		background: url("../img/flagge.png") no-repeat scroll 0 center #fff;
+		width: 58px;
+		height: 80px;
+	}
+	
+	.chapter {
+		border-bottom: 1px solid #CCCCCC;
+		border-radius: 0px;
+		box-shadow: none;
+		padding: 0px;
+	}
 }
-
-
