@@ -1,438 +1,398 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Piratenpad</title>
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8">
+		<title>Piratenpad</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-<link href="favicon.ico" rel="shortcut icon">
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link type="text/css" rel="stylesheet" href="css/style.css" />
-<link href="css/jquery.jqplot.min.css" rel="stylesheet" type="text/css">
-<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/jqplot/excanvas.min.js"></script><![endif]-->
-<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="js/jqplot/jquery.jqplot.min.js"></script>
-<script type="text/javascript" src="js/jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
-<script type="text/javascript" src="js/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
-<script type="text/javascript" src="js/jqplot/plugins/jqplot.highlighter.min.js"></script>
-<script type="text/javascript" src="js/jqplot/plugins/jqplot.dateAxisRenderer.min.js"></script>
-<script type="text/javascript">
-$(function() {
-  /* jQuery awesome scroll */
-  var $html = $('html');
-  $('a[href^=#]').click(function(evt) {
-    var anchor = $(this).attr('href').substr(1);
-    var scrollPoint = anchor.length? $('[name='+anchor+']').position().top : 0;
-    $html.animate({scrollTop: scrollPoint}, 550);
-    document.location = '#'+anchor;
-    evt.preventDefault();
-  })
-  $('a[href=""]').click(function(evt) {
-    evt.preventDefault();
-  });
-  $('.faq-headline').click(function(evt) {
-	 $(this).next('.faq-text').slideToggle("slow");
-  });
-  $('#randomPad').click(function(evt) {
-    if ($(this).is(':checked')) {
-	  //$("#customPadUrl").attr("disabled", "disabled");
-	  $("#customPadUrl").val("");
-	} else {
-	  //$("#customPadUrl").removeAttr("disabled");
-	}
-  });
-  $("#customPadUrl").keyup(function(evt) {
-	if ($(this).val() == "") {
-	  $('#randomPad').prop("checked", true);
-	} else {
-	  $('#randomPad').removeAttr("checked");
-	}
-  });
-})
+		<link href="favicon.ico" rel="shortcut icon">
+		<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
-/*function openPadUrl()
-{
-	var customPadName = replaceSpecialChars($('#customPadUrl').val());
-	var customPadUrl = "";
-	if (customPadName == "") {
-		customPadUrl = "ep/pad/newpad";
-	} else {
-		customPadUrl = customPadName;
-	}
-	loadPadUrl(customPadUrl);
-}*/
+		<link type="text/css" rel="stylesheet" href="css/style.css">
+		<link href="css/jquery.jqplot.min.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="excanvas.min.js"></script><![endif]-->
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/jqplot/jquery.jqplot.min.js"></script>
+		<script type="text/javascript" src="js/jqplot/plugins/jqplot.highlighter.min.js"></script>
+		<script type="text/javascript" src="js/jqplot/plugins/jqplot.dateAxisRenderer.min.js"></script>
+		<script type="text/javascript" src="js/jqplot/plugins/jqplot.enhancedLegendRenderer.min.js"></script>
+		<script type="text/javascript">
+		$(function() {
+			$('.faq-headline').click(function() {
+				$(this).next('.faq-text').slideToggle("slow");
+				$(this).toggleClass('faq-open');
+				$(this).toggleClass('faq-close');
+			});
+			$('#customPadUrl').click(function() {
+				$("#randomPad").removeAttr("checked");
+				$("#namedPad").prop("checked", true);
+			});
+		})
 
-function openLitePadUrl()
-{
-	var customPadName = replaceSpecialChars($('#customPadUrl').val());
-	if (customPadName == "") {
-		loadPadUrl("randomPad");
-	} else {
-		loadPadUrl("p/" + customPadName);
-	}
-}
-
-function loadPadUrl(url)
-{
-	window.location = "//piratenpad.de/" + url;
-}
-
-function replaceSpecialChars(text) {
-    return text.replace(/ /g, "_");
-}
-
-$(function() {
-	var allPadsCount = [
-        ['2013-05-30', 308360],
-        ['2013-08-09', 331188],
-        ['2013-09-02', 337824],
-        ['2013-10-01', 346634],
-        ['2013-11-15', 361042],
-        ['2013-12-09', 369240],
-        ['2014-01-10', 377904],
-        ['2014-02-10', 389645],
-        ['2014-03-19', 402730],
-        ['2014-04-13', 410449],
-        ['2014-05-15', 420358],
-        ['2014-06-13', 429128],
-        ['2014-07-14', 437507],
-        ['2014-08-23', 446433],
-        ['2014-10-22', 460680],
-        ['2014-11-14', 466965],
-        ['2014-12-16', 476324],
-        ['2015-02-01', 486741],
-        ['2015-03-15', 496576],
-        ['2015-04-15', 503307],
-        ['2015-05-15', 510402],
-        ['2015-06-15', 517533],
-        ['2015-07-15', 523953],
-        ['2015-08-15', 529388],
-        ['2015-09-15', 534759],
-        ['2015-10-15', 541201],
-        ['2015-11-15', 548659],
-        ['2015-12-15', 556150]
-    ];
-	var teamPadsCount = [
-        ['2013-05-30', 138621],
-        ['2013-08-09', 150603],
-        ['2013-09-02', 154213],
-        ['2013-10-01', 158593],
-        ['2013-11-15', 165559],
-        ['2013-12-09', 169154],
-        ['2014-01-10', 173214],
-        ['2014-02-10', 178811],
-        ['2014-03-19', 185308],
-        ['2014-04-13', 189135],
-        ['2014-05-15', 193729],
-        ['2014-06-13', 197569],
-        ['2014-07-14', 201195],
-        ['2014-08-23', 205623],
-        ['2014-10-22', 212490],
-        ['2014-11-14', 215319],
-        ['2014-12-16', 219056],
-        ['2015-02-01', 223512],
-        ['2015-03-15', 228351],
-        ['2015-04-15', 231739],
-        ['2015-05-15', 234978],
-        ['2015-06-15', 238267],
-        ['2015-07-15', 241134],
-        ['2015-08-15', 243761],
-        ['2015-09-15', 246484],
-        ['2015-10-15', 249376],
-        ['2015-11-15', 252489],
-        ['2015-12-15', 255428]
-    ];
-	var publicPadsCount = [
-        ['2013-05-30', 169739],
-        ['2013-08-09', 180585],
-        ['2013-09-02', 183621],
-        ['2013-10-01', 188041],
-        ['2013-11-15', 195483],
-        ['2013-12-09', 200086],
-        ['2014-01-10', 204690],
-        ['2014-02-10', 210834],
-        ['2014-03-19', 217422],
-        ['2014-04-13', 221314],
-        ['2014-05-15', 226629],
-        ['2014-06-13', 231559],
-        ['2014-07-14', 236312],
-        ['2014-08-23', 240810],
-        ['2014-10-22', 248190],
-        ['2014-11-14', 251646],
-        ['2014-12-16', 257268],
-        ['2015-02-01', 263229],
-        ['2015-03-15', 268225],
-        ['2015-04-15', 271568],
-        ['2015-05-15', 275424],
-        ['2015-06-15', 279266],
-        ['2015-07-15', 282819],
-        ['2015-08-15', 285627],
-        ['2015-09-15', 288275],
-        ['2015-10-15', 291825],
-        ['2015-11-15', 296170],
-        ['2015-12-15', 300722]
-    ];
-	var proAccountsCount = [
-        ['2013-05-30', 42863],
-        ['2013-08-09', 52673],
-        ['2013-09-02', 53243],
-        ['2013-10-01', 54105],
-        ['2013-11-15', 55829],
-        ['2013-12-09', 56926],
-        ['2014-01-10', 57922],
-        ['2014-02-10', 59343],
-        ['2014-03-19', 60819],
-        ['2014-04-13', 61814],
-        ['2014-05-15', 63006],
-        ['2014-06-13', 64103],
-        ['2014-07-14', 65325],
-        ['2014-08-23', 66418],
-        ['2014-10-22', 68195],
-        ['2014-11-14', 69065],
-        ['2014-12-16', 70218],
-        ['2015-02-01', 71344],
-        ['2015-03-15', 72646],
-        ['2015-04-15', 73609],
-        ['2015-05-15', 74552],
-        ['2015-06-15', 75386],
-        ['2015-07-15', 76262],
-        ['2015-08-15', 76937],
-        ['2015-09-15', 77609],
-        ['2015-10-15', 78300],
-        ['2015-11-15', 79315],
-        ['2015-12-15', 80224]
-    ];
-	var proDomainsCount = [
-        ['2013-05-30', 10586],
-        ['2013-08-09', 11086],
-        ['2013-09-02', 11202],
-        ['2013-10-01', 11379],
-        ['2013-11-15', 11757],
-        ['2013-12-09', 12013],
-        ['2014-01-10', 12233],
-        ['2014-02-10', 12510],
-        ['2014-03-19', 12843],
-        ['2014-04-13', 13036],
-        ['2014-05-15', 13297],
-        ['2014-06-13', 13549],
-        ['2014-07-14', 13792],
-        ['2014-08-23', 14041],
-        ['2014-10-22', 14470],
-        ['2014-11-14', 14689],
-        ['2014-12-16', 14955],
-        ['2015-02-01', 15225],
-        ['2015-03-15', 15506],
-        ['2015-04-15', 15716],
-        ['2015-05-15', 15928],
-        ['2015-06-15', 16127],
-        ['2015-07-15', 16334],
-        ['2015-08-15', 16503],
-        ['2015-09-15', 16677],
-        ['2015-10-15', 16849],
-        ['2015-11-15', 17093],
-        ['2015-12-15', 17316]
-    ];
-	var plot1 = $.jqplot ('stats', [allPadsCount, teamPadsCount, publicPadsCount, proAccountsCount, proDomainsCount],
-	{
-		title:'Padstatistik',
-		series: [{label: 'Pads'}, {label: 'Teampads'}, {label: '&Ouml;ffentliche Pads'}, {label: 'Team Accounts'}, {label: 'Teams/Subdomains'}],
-		axes: {
-			xaxis: {
-				label: "Datum",
-				renderer:$.jqplot.DateAxisRenderer,
-				tickOptions:{
-					formatString:'%d.%m.%y'
-				}
-			},
-			yaxis: {
-				min: 0,
-				label: "",
-				tickOptions:{
-					formatString:'%s'
-				}
+		function openLitePadUrl() {
+			var customPadName = replaceSpecialChars($('#customPadUrl').val());
+			if ($("#randomPad").is(':checked')|| customPadName == "") {
+				loadPadUrl("randomPad");
+			} else {
+				loadPadUrl("p/" + customPadName);
 			}
-		},
-		highlighter: {
-			show: true,
-			sizeAdjust: 7.5,
-		},
-		cursor: {
-			show: false
-		},
-		legend:{
-           show:true,
-		   placement: 'outsideGrid'
-        }
-	});
-});
+		}
 
-</script>
-</head>
-<body>
-<div id="page">
-	<div id="header">
-		<div class="centered">
-			<div class="logo"></div>
-			<div id="nav">
-		    	<ul>
-		      		<li><a href="#home">Home</a></li>
-		      		<li><a href="#faq">FAQ</a></li>
-					<li><a href="#tou">Nutzungsbedingungen</a></li>
-		      		<li><a href="#impressum">Impressum</a></li>
-		   		</ul>
-		  	</div>
-		</div>
-        <div id="mobile-nav">
-            <ul>
-		        <li><a href="#about"><i class="icon-info-sign icon-large"></i></a></li>
-		        <li><a href="#download"><i class="icon-download-alt"></i></a></li>
-		        <li><a href="#contribute"><i class="icon-wrench"></i></a></li>
-		        <li><a href="#links"><i class="icon-external-link"></i></a></li>
-		        <li><a href="#contact"><i class="icon-envelope"></i></a></li>
-	        </ul>
-        </div>
-	</div>
-	<div id="content">
-		<a class="scroll-target" name="home"></a>
-		<div class="centered chapter">
-			<h1>Home</h1>
-			<p>Das Piratenpad ist ein Dienst der Piratenpartei Deutschland und basiert auf der Software Etherpad.<br>
-			Etherpad ist eine Software, um Text via Browser gemeinsam zu bearbeiten. Etherpad arbeitet live. Das heißt, jeder kann sofort die Änderungen des anderen am Text sehen.</p>
-			<p>Anleitung: <a href="Piratenpad_Anleitung_1_0.pdf" target="_blank"><b>PDF</b></a> (<a href="http://wiki.piratenpartei.de/Piratenpad/Handbuch" target="_blank"><b>Wiki</b></a>)</p><br>
-			<div id="button-panel">
-				Padname:<br>
-				<input id="randomPad" type="checkbox" checked="checked" />zufällig<br>
-				<input id="customPadUrl" type="text" placeholder="zufälliger Padname" /><br>
-				<a href="#" onclick="openLitePadUrl()">
-					<div class="button">Neues Pad</div>
-				</a>
-				<br>
-				<br>
-				<a href="https://piratenpad.de/ep/pro-signup/">
-					<div class="button">Neues Team</div>
-				</a>
+		function loadPadUrl(url) {
+			window.location = "//piratenpad.de/" + url;
+		}
+
+		function replaceSpecialChars(text) {
+			return text.replace(/ /g, "_");
+		}
+
+		$(function() {
+			var allPadsCount = [
+				['2013-05-30', 308360],
+				['2013-08-09', 331188],
+				['2013-09-02', 337824],
+				['2013-10-01', 346634],
+				['2013-11-15', 361042],
+				['2013-12-09', 369240],
+				['2014-01-10', 377904],
+				['2014-02-10', 389645],
+				['2014-03-19', 402730],
+				['2014-04-13', 410449],
+				['2014-05-15', 420358],
+				['2014-06-13', 429128],
+				['2014-07-14', 437507],
+				['2014-08-23', 446433],
+				['2014-10-22', 460680],
+				['2014-11-14', 466965],
+				['2014-12-16', 476324],
+				['2015-02-01', 486741],
+				['2015-03-15', 496576],
+				['2015-04-15', 503307],
+				['2015-05-15', 510402],
+				['2015-06-15', 517533],
+				['2015-07-15', 523953],
+				['2015-08-15', 529388],
+				['2015-09-15', 534759],
+				['2015-10-15', 541201],
+				['2015-11-15', 548659],
+				['2015-12-15', 556150]
+			];
+			var teamPadsCount = [
+				['2013-05-30', 138621],
+				['2013-08-09', 150603],
+				['2013-09-02', 154213],
+				['2013-10-01', 158593],
+				['2013-11-15', 165559],
+				['2013-12-09', 169154],
+				['2014-01-10', 173214],
+				['2014-02-10', 178811],
+				['2014-03-19', 185308],
+				['2014-04-13', 189135],
+				['2014-05-15', 193729],
+				['2014-06-13', 197569],
+				['2014-07-14', 201195],
+				['2014-08-23', 205623],
+				['2014-10-22', 212490],
+				['2014-11-14', 215319],
+				['2014-12-16', 219056],
+				['2015-02-01', 223512],
+				['2015-03-15', 228351],
+				['2015-04-15', 231739],
+				['2015-05-15', 234978],
+				['2015-06-15', 238267],
+				['2015-07-15', 241134],
+				['2015-08-15', 243761],
+				['2015-09-15', 246484],
+				['2015-10-15', 249376],
+				['2015-11-15', 252489],
+				['2015-12-15', 255428]
+			];
+			var publicPadsCount = [
+				['2013-05-30', 169739],
+				['2013-08-09', 180585],
+				['2013-09-02', 183621],
+				['2013-10-01', 188041],
+				['2013-11-15', 195483],
+				['2013-12-09', 200086],
+				['2014-01-10', 204690],
+				['2014-02-10', 210834],
+				['2014-03-19', 217422],
+				['2014-04-13', 221314],
+				['2014-05-15', 226629],
+				['2014-06-13', 231559],
+				['2014-07-14', 236312],
+				['2014-08-23', 240810],
+				['2014-10-22', 248190],
+				['2014-11-14', 251646],
+				['2014-12-16', 257268],
+				['2015-02-01', 263229],
+				['2015-03-15', 268225],
+				['2015-04-15', 271568],
+				['2015-05-15', 275424],
+				['2015-06-15', 279266],
+				['2015-07-15', 282819],
+				['2015-08-15', 285627],
+				['2015-09-15', 288275],
+				['2015-10-15', 291825],
+				['2015-11-15', 296170],
+				['2015-12-15', 300722]
+			];
+			var proAccountsCount = [
+				['2013-05-30', 42863],
+				['2013-08-09', 52673],
+				['2013-09-02', 53243],
+				['2013-10-01', 54105],
+				['2013-11-15', 55829],
+				['2013-12-09', 56926],
+				['2014-01-10', 57922],
+				['2014-02-10', 59343],
+				['2014-03-19', 60819],
+				['2014-04-13', 61814],
+				['2014-05-15', 63006],
+				['2014-06-13', 64103],
+				['2014-07-14', 65325],
+				['2014-08-23', 66418],
+				['2014-10-22', 68195],
+				['2014-11-14', 69065],
+				['2014-12-16', 70218],
+				['2015-02-01', 71344],
+				['2015-03-15', 72646],
+				['2015-04-15', 73609],
+				['2015-05-15', 74552],
+				['2015-06-15', 75386],
+				['2015-07-15', 76262],
+				['2015-08-15', 76937],
+				['2015-09-15', 77609],
+				['2015-10-15', 78300],
+				['2015-11-15', 79315],
+				['2015-12-15', 80224]
+			];
+			var proDomainsCount = [
+				['2013-05-30', 10586],
+				['2013-08-09', 11086],
+				['2013-09-02', 11202],
+				['2013-10-01', 11379],
+				['2013-11-15', 11757],
+				['2013-12-09', 12013],
+				['2014-01-10', 12233],
+				['2014-02-10', 12510],
+				['2014-03-19', 12843],
+				['2014-04-13', 13036],
+				['2014-05-15', 13297],
+				['2014-06-13', 13549],
+				['2014-07-14', 13792],
+				['2014-08-23', 14041],
+				['2014-10-22', 14470],
+				['2014-11-14', 14689],
+				['2014-12-16', 14955],
+				['2015-02-01', 15225],
+				['2015-03-15', 15506],
+				['2015-04-15', 15716],
+				['2015-05-15', 15928],
+				['2015-06-15', 16127],
+				['2015-07-15', 16334],
+				['2015-08-15', 16503],
+				['2015-09-15', 16677],
+				['2015-10-15', 16849],
+				['2015-11-15', 17093],
+				['2015-12-15', 17316]
+			];
+			var plot1 = $.jqplot('plot', [allPadsCount, teamPadsCount, publicPadsCount, proAccountsCount, proDomainsCount],
+			{
+				title:'Padstatistik',
+				height: 400,
+				series: [{label: 'Pads insgesamt'}, {label: 'Teampads'}, {label: '&Ouml;ffentliche Pads'}, {label: 'Team-Accounts'}, {label: 'Teams/Subdomains'}],
+				axes: {
+					xaxis: {
+						label: "Datum",
+						renderer:$.jqplot.DateAxisRenderer,
+						tickOptions:{
+							formatString:'%d.%m.%y'
+						}
+					},
+					yaxis: {
+						min: 0,
+						label: "",
+						tickOptions:{
+							formatString:'%\'d'
+						}
+					}
+				},
+				highlighter: {
+					show: true,
+					sizeAdjust: 7.5,
+				},
+				cursor: {
+					show: false
+				},
+				legend:{
+					renderer: jQuery.jqplot.EnhancedLegendRenderer,
+					show: true,
+					location: 's',
+					placement: 'outsideGrid',
+					rendererOptions: {
+						numberRows: '3',
+						numberColumns: '2'
+					}
+				}
+			});
+			$(window).resize(function() {
+				plot1.replot( { resetAxes: true } );
+			});
+		});
+		</script>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header" class="centered">
+				<div id="logo"></div>
+				<div id="nav">
+					<ul>
+						<li><a href="#home">Home</a></li>
+						<li><a href="#faq">FAQ</a></li>
+						<li><a href="#tou">Nutzungsbedingungen</a></li>
+						<li><a href="#impressum">Impressum</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="content">
+				<div class="centered chapter" id="home">
+					<h1>Home</h1>
+					<p>Das Piratenpad ist ein Dienst der Piratenpartei Deutschland und basiert auf der Software Etherpad.</p>
+					<p>Es können Texte via Browser gemeinsam und live bearbeitet werden. Das heißt, jeder kann sofort die Änderungen des anderen am Text sehen.</p>
+					<p>Anleitung: <a href="https://wiki.piratenpartei.de/Piratenpad/Handbuch"><b>Wiki</b></a></p><br>
+					<div id="button-panel">
+						Padname:<br>
+						<input type="radio" name="padname" id="randomPad" checked="checked"> <label for="randomPad">zufällig</label>
+						<input type="radio" name="padname" id="namedPad"> <label for="namedPad">festgelegt:</label>
+						<input id="customPadUrl" type="text"><br>
+						<a id="openLitePad" href="#" onclick="openLitePadUrl()">
+							<div class="button">Neues Pad</div>
+						</a>
+						<br>
+						<br>
+						<a href="https://piratenpad.de/ep/pro-signup/">
+							<div class="button">Neues Team</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="centered chapter" id="faq">
+					<h1>FAQ</h1>
+					<h3 class="faq-headline faq-closed">
+						Was kann man damit machen?
+					</h3>
+					<div class="faq-text">
+						Man kann Pads eigentlich immer verwenden, wenn man einen Text schreiben muss, aber einem selbst die Worte fehlen. Wenn der Text gemeinsam bearbeitet wird, kann jeder eigene Teile hinzufügen und den anderen korrigieren. So entsteht qualitativer Text. Und es macht auch viel mehr Spaß, den Text gemeinsam zu bearbeiten.
+					</div>
+
+					<h3 class="faq-headline faq-closed">
+						Anwendungsbeispiele
+					</h3>
+					<div class="faq-text">
+						<ul>
+							<li>E-Mails/Briefe</li>
+							<li>Protokolle</li>
+							<li>Pressemitteilungen</li>
+							<li>Ideenfindungen (Organisation von Parteitagen usw.)</li>
+						</ul>
+					</div>
+
+					<h3 class="faq-headline faq-closed">
+						Wie verwende ich Piratenpad?
+					</h3>
+					<div class="faq-text">
+						<p>Über "Neues Pad" kannst du ein neues öffentliches Pad erstellen. Schicke nun den Personen, mit denen du das Pad bearbeiten möchtest, den Link zu diesem Pad, damit sie darauf zugreifen können. Jedoch hat jeder, der diesen Link besitzt, auch volle Schreibrechte an diesem Pad.</p>
+						
+						<p>Wenn du Pads regelmäßig verwenden möchtest, empfiehlt es sich, eine Teamseite anzulegen. Das machst du mit der Schaltfläche "Neues Team". Die Teamseite erreichst du dann über eine Subdomain deiner Wahl. Nur Leute, die du persönlich per Mail eingeladen hast, haben Zugriff auf die Pads in der Teamseite. Zudem kann man hier Pads mit Passwort schützen.</p>
+					</div>
+
+					<h3 class="faq-headline faq-closed">
+						Wie erzeuge ich Nur-Lesen-Links zu Pads?
+					</h3>
+					<div class="faq-text">		
+						<p>Bei öffentlichen Pads gibt es Optionen zum Teilen und Einbetten in der Symbolleiste.</p>
+					
+						<p>Bei Teampads klicke nacheinander auf "Time Slider", "Link to read-only page" und "Viewing latest content".<p>
+
+						<p>Diesen Link kannst du nun unbedenklich weitergeben. Die Ansicht wird automatisch aktualisiert, sobald es Änderungen am Pad gibt.</p>
+					</div>
+
+					<h3 class="faq-headline faq-closed">
+						Was kann ich machen, wenn mein Pad nicht mehr lädt?
+					</h3>
+					<div class="faq-text">
+						<p>Das ist ein Fehler in der Etherpad-Software, der noch nicht behoben werden konnte. Sollte ein Pad nicht mehr laden, kann der Text exportiert werden:</p>
+
+						<p>Bei öffentlichen Pads: https://piratenpad.de/p/padname/export/html<br>
+						Bei Teampads: https://teamname.piratenpad.de/ep/pad/export/padname/latest?format=html</p>	
+					</div>
+				</div>
+
+				<div class="centered chapter" id="stats">
+					<h1>Statistik</h1>
+					<div id="plot"></div>
+				</div>
+
+				<div class="centered chapter" id="tou">
+					<h1>Nutzungs&shy;bedingungen</h1>
+
+					<b>Nutzung</b>
+					<p>Der Dienst wird von der Piratenpartei Deutschland betrieben, verantwortlich für die Administration ist die Bundes-IT. Für eventuelle Verluste von Daten übernehmen wir keine Haftung. Die Nutzung dieses Dienstes erfolgt auf eigenes Risiko. Die Piratenpartei Deutschland garantiert nicht für die Verfügbarkeit des Dienstes.</p>
+
+					<b>Datenschutz</b>
+					<p>Wir speichern keine IP-Adressen.<br>
+					Die angegebenen Daten (E-Mail-Adresse, Name) werden nicht an Dritte weitergegeben.</p>
+
+					<b>Cookies</b>
+					<p>Um einen Nutzer auf einem Pad beim erneuten Besuch wieder zu erkennen und um Einstellungen (Sprache, Pad-Darstellung, etc.) zu speichern, werden Cookies auf dem jeweiligen Gerät gespeichert.</p>
+
+					<b>Rechte</b>
+					<p>Die Rechte an den Texten bleiben beim jeweiligen Autor. Für die Inhalte der Pads sind die jeweiligen Autoren verantwortlich. Wir distanzieren uns hiermit von diesen Inhalten und schließen eine Haftung dafür aus.<br>
+					Wir behalten uns das Recht vor, Pads zu entfernen, falls rechtswidrige Inhalte darauf publiziert werden. Ferner werden wir die publizierten Inhalte nicht weitergeben oder einer anderweitigen Nutzung zuführen, es sei denn, wir sind durch gesetzliche Bestimmungen dazu verpflichtet. In diesem Fall werden wir, soweit es uns möglich ist, die Betroffenen unterrichten.</p>
+
+					<b>Löschung von Pads und Chateinträgen</b>
+					<p>Öffentliche Pads (Pads unter der URL: https://piratenpad.de/) können NICHT selbstständig gelöscht werden. Wir behalten uns vor, inaktive Pads nach einer gewissen Zeit zu löschen. Aktuell ist vorgesehen, bei öffentlichen Pads, welche 90 Tage lang nicht aufgerufen wurden, die letzte Version zu archivieren und nach Nachweis des berechtigten Interesses dem/den Autor/en zur Verfügung zu stellen. Das ursprüngliche Pad wird vom Server gelöscht. Da auch bei sorgfältigen Umgang mit den Daten nicht ausgeschlossen werden kann, dass ein Pad nicht mehr zur Verfügung steht, wird dem Nutzer nachdrücklich empfohlen, selbst eine Datensicherung seines/r Pad/s zu bewirken.</p>
+
+					<b>Löschung von Teams</b>
+					<p>Teampads und die dazugehörigen Benutzerkonten und -daten werden nach einer Frist von 90 Tagen vollständiger Inaktivität nicht gelöscht, sondern lediglich gesperrt. Wir behalten uns vor, inaktive Teampads und die dazugehörigen Benutzerkonten und -daten nach einer gewissen Zeit zu löschen. Aktuell ist vorgesehen, Teampads, welche 180 Tage lang nicht aufgerufen wurden, in der letzten Version zu archivieren und nach Nachweis des berechtigten Interesses dem/den Autor/en zur Verfügung zu stellen. Da auch bei sorgfältigem Umgang mit den Daten nicht ausgeschlossen werden kann, dass ein Pad nicht mehr zur Verfügung steht, wird dem Nutzer nachdrücklich empfohlen, selbst eine Datensicherung seines/r Pad/s zu bewirken.</p>
+				</div>
+
+				<div class="centered chapter" id="impressum">
+					<h1>Impressum</h1>
+					<h3>Supportanfragen an: <a class="support-mail" href="mailto:support@it.piratenpartei.de">support@it.piratenpartei.de</a></h3>
+					<p>
+					Dienstanbieter dieser Seite ist die Piratenpartei Deutschland vertreten durch den Vorsitzenden Patrick Schiffer<br>
+					</p>
+					<p>
+					Redaktionell verantwortlich gemäß §5 TMG:<br>
+					Patrick Schiffer<br>
+					Piratenpartei Deutschland<br>
+					Pflugstraße 9a<br>
+					10115 Berlin<br>
+					E-Mail: vorstand@piratenpartei.de<br>
+					</p>
+					Ladungsfähige Anschrift gemäß TMG:<br>
+					Piratenpartei Deutschland<br>
+					Pflugstraße 9a<br>
+					10115 Berlin<br>
+					<p>
+					Geschäftsstelle:<br>
+					Piratenpartei Deutschland<br>
+					Pflugstraße 9a<br>
+					10115 Berlin<br>
+					Fon: +49 30 3464619-71<br>
+					Fax: +49 30 609897-517<br>
+					E-Mail: bgs@piratenpartei.de<br>
+					</p>
+					<p>
+					Haftungshinweis: Im Rahmen unseres Dienstes werden auch Links zu Internetinhalten anderer Anbieter bereitgestellt. Auf den Inhalt dieser Seiten haben wir keinen Einfluss; für den Inhalt ist ausschließlich der Betreiber der anderen Website verantwortlich. Trotz der Überprüfung der Inhalte im gesetzlich gebotenen Rahmen müssen wir daher jede Verantwortung für den Inhalt dieser Links bzw. der verlinkten Seite ablehnen.
+					</p>
+					
+					<div class="source-link">Source-Code dieser Startseite: <a href="https://github.com/BundesIT/piratenpad-website">https://github.com/BundesIT/piratenpad-website</a></div>
+				</div>
 			</div>
 		</div>
-
-		<a class="scroll-target" name="faq"></a>
-		<div class="centered chapter">
-			<h1>FAQ</h1>
-			<h3 class="faq-headline">
-				<a href=""><span class="arrow right"></span>Was kann man damit machen?</a>
-			</h3>
-			<div class="faq-text">
-				Man kann Etherpad eigentlich immer brauchen, wenn man einen Text schreiben muss, aber einem selbst die Worte fehlen. Wenn der Text gemeinsam bearbeitet, wird kann jeder eigene Teile hinzufügen und den anderen korrigieren. So entsteht qualitativer Text. Und es macht auch viel mehr Spaß, den Text gemeinsam zu bearbeiten.
-			</div>
- 
-			<h3 class="faq-headline">
-				<a href=""><span class="arrow right"></span>Anwendungsbeispiele</a>
-			</h3>
-			<div class="faq-text">
-				<ul>
-					<li>E-Mail/Brief</li>
-					<li>Protokolle (Jeder kann live ergänzen, was ihm fehlt und kann sehen, was dokumentiert wird)</li>
-					<li>Pressemitteilungen</li>
-					<li>Ideenfindungen (Organisation von Parteitagen usw.)</li>
-				</ul>
-			</div>
-
-			<h3 class="faq-headline">
-				<a href=""><span class="arrow right"></span>Wie verwende ich Etherpad?</a>
-			</h3>
-			<div class="faq-text">
-				Du kannst, wenn du auf „neues Pad“ gehst, einen neuen öffentlichen Pad erstellen. Schicke nun den Personen, mit denen du das Pad bearbeiten willst, den Link zu diesem Pad, damit sie darauf zugreifen können. Jedoch hat jeder, der diesen Link besitzt, auch volle Schreibrechte an diesem Pad.<br>
-				Wenn du Etherpad regelmäßig verwendest, empfiehlt es sich, eine Team-Seite anzulegen. Das machst du mit der Schaltfläche „neues Team“. Die Teamseite erreichst du dann über eine Subdomain deiner Wahl. Nur Leute, die du persönlich per Mail eingeladen hast, haben Zugriff auf die Pads in der Team-Seite. Zudem kann man hier Pads mit Passwort schützen.
-			</div>
- 
-			<h3 class="faq-headline">
-				<a href=""><span class="arrow right"></span>Wie erzeuge ich Read-Only Links zu Pads?</a>
-			</h3>
-			<div class="faq-text">
-				Um einen nur-lese Link zu einem Pad zu erstellen musst du folgendes machen
-				<ul>
-					<li>Gehe auf "Time Slider"</li>
-					<li>dann auf "Link to read-only page"</li>
-					<li>zuletzt noch auf "Viewing latest content"</li>
-				</ul>
-				Diesen Link kannst du nun unbedenklich weitergeben. Die Ansicht wird automatisch aktualisiert sobald es Änderungen am Pad gibt
-			</div>
-			
-			<h3 class="faq-headline">
-				<a href=""><span class="arrow right"></span>Was kann ich machen wenn mein Pad nicht mehr lädt?</a>
-			</h3>
-			<div class="faq-text">
-				Das ist ein Fehler in der Software von "Etherpad Lite" der noch nicht behoben werden konnte. Sollte das Pad nicht mehr laden, kann der Text über den Zusatz "/export/html" am Link exportiert werden (z. B. http://piratenpad.de/p/padname/export/html).
-			</div>
-		</div>
-		
-		<a class="scroll-target" name="stats"></a>
-		<div class="centered chapter">
-			<h1>Statistik</h1>
-			<div id="stats" style="height:400px;width:100%; "></div>
-		</div>
-		
-		<a class="scroll-target" name="tou"></a>
-		<div class="centered chapter">
-			<h1>Nutzungsbedingungen</h1>
-
-			<b>Nutzung</b>
-			<p>Der Dienst wird von der Piratenpartei Deutschland betrieben, verantwortlich für die Administration ist die Bundes-IT. Für eventuelle Verluste von Daten übernehmen wir keine Haftung. Die Nutzung dieses Dienstes erfolgt auf eigenes Risiko. Die Piratenpartei Deutschland garantiert nicht für die Verfügbarkeit des Dienstes.</p>
-
-			<b>Datenschutz</b>
-			<p>Wir speichern keine IP-Adressen.<br>
-			Die angegebenen Daten (E-Mail Adresse, Name) werden nicht an Dritte weitergegeben.</p>
-
-			<b>Cookies</b>
-			<p>Um einen Nutzer auf einem Pad beim erneuten Besuch wieder zu erkennen und um Einstellungen (Sprache, Pad-Darstellung, etc.) zu speichern, werden Cookies auf dem jeweiligen Gerät gespeichert.</p>
-
-			<b>Rechte</b>
-			<p>Die Rechte an den Texten bleiben beim jeweiligen Autor. Für die Inhalte der Pads sind die jeweiligen Autoren verantwortlich. Wir distanzieren uns hiermit von diesen Inhalten und schließen eine Haftung dafür aus.<br>
-			Wir behalten uns das Recht vor, Pads zu entfernen, falls rechtswidrige Inhalte darauf publiziert werden. Ferner werden wir die publizierten Inhalte nicht weitergeben oder einer anderweitigen Nutzung zuführen, es sei denn, wir sind durch gesetzliche Bestimmungen dazu verpflichtet. In diesem Fall werden wir, soweit es uns möglich ist, die Betroffenen unterrichten.</p>
-
-			<b>Löschung von Pads und Chateinträgen</b>
-			<p>Öffentliche Pads (Pads unter der URL: http(s)://piratenpad.de/) können NICHT selbstständig gelöscht werden. Wir behalten uns vor, inaktive Pads nach einer gewissen Zeit zu löschen. Aktuell ist vorgesehen, bei öffentlichen Pads, welche 90 Tage lang nicht aufgerufen wurden, die letzte Version zu archivieren und nach Nachweis des berechtigten Interesses dem/den Autor/en zur Verfügung zu stellen. Das ursprüngliche Pad wird vom Server gelöscht. Da auch bei sorgfältigen Umgang mit den Daten nicht ausgeschlossen werden kann, dass ein Pad nicht mehr zur Verfügung steht, wird dem Nutzer nachdrücklich empfohlen, selbst eine Datensicherung seines/r Pad/s zu bewirken.</p>
-
-			<b>Löschung von Teams</b>
-			<p>Teampads und die dazugehörigen Benutzerkonten und -daten werden nach einer Frist von 90 Tagen vollständiger Inaktivität nicht gelöscht, sondern lediglich gesperrt. Wir behalten uns vor, inaktive Teampads und die dazugehörigen Benutzerkonten und -daten nach einer gewissen Zeit zu löschen. Aktuell ist vorgesehen, Teampads, welche 180 Tage lang nicht aufgerufen wurden, in der letzten Version zu archivieren und nach Nachweis des berechtigten Interesses dem/den Autor/en zur Verfügung zu stellen. Da auch bei sorgfältigem Umgang mit den Daten nicht ausgeschlossen werden kann, dass ein Pad nicht mehr zur Verfügung steht, wird dem Nutzer nachdrücklich empfohlen, selbst eine Datensicherung seines/r Pad/s zu bewirken.</p>
-		</div>
-
-		<a class="scroll-target" name="impressum"></a>
-		<div class="centered chapter">
-			<h1>Impressum</h1>
-			<h3>Supportanfragen an <a class="support-mail" href="mailto:support@it.piratenpartei.de">support@it.piratenpartei.de</a></h3>
-			<p>
-			Dienstanbieter dieser Seite ist die Piratenpartei Deutschland vertreten durch den Vorsitzenden Stefan Körner<br>
-			</p>
-			<p>
-			Redaktionell verantwortlich gemäß §5 TMG:<br>
-			Stefan Körner<br>
-			Piratenpartei Deutschland<br>
-			Pflugstraße 9a<br>
-			10115 Berlin<br>
-			Email: geschaeftsstelle [at] piratenpartei . de -- (statt "at", bitte "@" eingeben)<br>
-			</p>
-			Ladungsfähige Anschrift gemäß TMG:<br>
-			Piratenpartei Deutschland<br>
-			Pflugstraße 9a<br>
-			10115 Berlin<br>
-			<p>
-			Geschäftsstelle<br>
-			Piratenpartei Deutschland<br>
-			Pflugstraße 9a<br>
-			10115 Berlin<br>
-			Fon: +49 30 3464619-71<br>
-			Fax: +49 30 609897-517<br>
-			E-Mail: bgs_anfragen [at] piratenpartei.de -- (statt "at", bitte "@" eingeben)<br>
-			</p>
-			<p>
-			Haftungshinweis: Im Rahmen unseres Dienstes werden auch Links zu Internetinhalten anderer Anbieter bereitgestellt. Auf den Inhalt dieser Seiten haben wir keinen Einfluss; für den Inhalt ist ausschließlich der Betreiber der anderen Website verantwortlich. Trotz der Überprüfung der Inhalte im gesetzlich gebotenen Rahmen müssen wir daher jede Verantwortung für den Inhalt dieser Links bzw. der verlinkten Seite ablehnen.
-			</p>
-			<div align="center">
-				Source-Code dieser Startseite: <a href="https://github.com/BundesIT/piratenpad-website">https://github.com/BundesIT/piratenpad-website</a>
-			</div>
-		</div>
-	</div>
-</div>
-</body>
+	</body>
 </html>
