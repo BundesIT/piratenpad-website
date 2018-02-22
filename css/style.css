@@ -102,10 +102,6 @@ div#button-panel {
 	text-align: center;
 }
 
-div#plot {
-	padding: 15px;
-}
-
 div#header div#nav li a,
 div#header div#nav li a:active {
 	transition: color 0.25s linear 0s;
