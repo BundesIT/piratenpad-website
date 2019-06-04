@@ -18,28 +18,7 @@
 				$(this).toggleClass('faq-open');
 				$(this).toggleClass('faq-close');
 			});
-			$('#customPadUrl').click(function() {
-				$("#randomPad").removeAttr("checked");
-				$("#namedPad").prop("checked", true);
-			});
 		})
-
-		function openLitePadUrl() {
-			var customPadName = replaceSpecialChars($('#customPadUrl').val());
-			if ($("#randomPad").is(':checked')|| customPadName == "") {
-				loadPadUrl("randomPad");
-			} else {
-				loadPadUrl("p/" + customPadName);
-			}
-		}
-
-		function loadPadUrl(url) {
-			window.location = "//piratenpad.de/" + url;
-		}
-
-		function replaceSpecialChars(text) {
-			return text.replace(/ /g, "_");
-		}
 		</script>
 	</head>
 	<body>
@@ -60,62 +39,119 @@
 					<h1>Home</h1>
 					<p>Das Piratenpad ist ein Dienst der Piratenpartei Deutschland und basiert auf der Software Etherpad.</p>
 					<p>Es können Texte via Browser gemeinsam und live bearbeitet werden. Das heißt, jeder kann sofort die Änderungen des anderen am Text sehen.</p>
-					<p>Anleitung: <a href="https://wiki.piratenpartei.de/Piratenpad/Handbuch"><b>Wiki</b></a></p><br>
-					<div id="button-panel">
-						Padname:<br>
-						<input type="radio" name="padname" id="randomPad" checked="checked"> <label for="randomPad">zufällig</label>
-						<input type="radio" name="padname" id="namedPad"> <label for="namedPad">festgelegt:</label>
-						<input id="customPadUrl" type="text"><br>
-						<a id="openLitePad" href="#" onclick="openLitePadUrl()">
-							<div class="button">Neues Pad</div>
-						</a>
-						<br>
-						<br>
-						<a href="https://piratenpad.de/ep/pro-signup/">
-							<div class="button">Neues Team</div>
-						</a>
-					</div>
+				</div>
+				<div class="centered chapter" id="shutdown">
+					<h1>&#9888; Abschaltung am 16. Juni<br>&#9888; Shutdwown on June 16th</h1>
+					<h2>Deutsch</h2>
+					<p>Seit Jahren betreiben wir den Dienst und seit Jahren wächst die Anzahl der Pads, der Nutzer, der Teams. Man kann sagen, dass unsere Etherpad-Installation sehr beliebt war und ist.</p>
+
+					<p>Doch wie vieles Schöne, so haben auch die Pads ein Ende. Schon seit langem haben die Entwickler die von uns genutzte Version, das Etherpad Pro, eingestellt. Also nicht mehr aktiv weiterentwickelt. Damit gibt es auch keine Sicherheitsupdates und Anpassungen auf aktuelle Betriebssystemversionen.</p>
+
+					<p>Das führt dazu, dass bereits vor einiger Zeit die Stabilität und Sicherheit der Pads nicht mehr zu 100% gewährleistet werden konnte. Daher haben wir nach einer Alternative gesucht, die ressourcenschonend und unserer Situation angepasst ist.</p>
+
+					<p>Unser Augenmerk fiel auf die Software <a href="https://cryptpad.fr">CryptPad</a>, die grundsätzlich unserer Version von Etherpad ähnlich ist, zusätzlich jedoch über einige nette Optionen verfügt.</p>
+
+					<p>Hierzu zählen unter anderem,</p>
+					<ul>
+						<li>eine starke Verschlüsselung der Pads und der Zero-Knowledge-Ansatz.</li>
+						<li>Syntax-Highlighting für eine große Anzahl an Programmier- und Auszeichnungssprachen.</li>
+						<li>vereinfachtes Management von Pads über das CryptDrive.</li>
+					</ul>
+					
+					<p>Schaue dir das CryptPad unter <a href="https://cryptpad.piratenpartei.de">https://cryptpad.piratenpartei.de</a> an und probiere es aus.</p>
+
+					<p>Eine kurze Einführung in die Funktionen des CryptPads befindet sich unter:<br>
+					<a href="https://wiki.piratenpartei.de/IT/CryptPad">https://wiki.piratenpartei.de/IT/CryptPad</a></p>
+
+					<p>Mit Einführung der CryptPads werden wir uns nun aber auch von den Etherpads trennen müssen. Zeitlich sieht das wie folgt aus:</p>
+					<ul>
+						<li>Nutze die neue CryptPad-Instanz unter <a href="https://cryptpad.piratenpartei.de">https://cryptpad.piratenpartei.de</a>.</li>
+						<li>Sichere ab sofort alle Pads, die noch bearbeitet werden oder deren Inhalt noch benötigt wird und nicht anderweitig dokumentiert ist</li>
+						<li>Verlagere die Arbeit nach und nach in das CryptPad.</li>
+						<li>Ab dem 16.06.2019 werden die Pads dann endgültig abgeschaltet.</li>
+					</ul>
+
+					<p><strong>Kein Backup, kein Mitleid ...</strong></p>
+
+					<p>... denn nach dem Abschalten, folgt die Löschung. Das bedeutet, dass wir die Pads nach einer kurzen Wartezeit auch endgültig löschen werden. Über den Export hast du jedoch bis zur Abschaltung die Möglichkeit, die Werke vor dem Datennirvana zu retten.</p>
+
+					<p>Nutze nun die neuen CryptPads. Nach einer kleinen Umgewöhnungszeit wirst du es sicher so sehr mögen wie wir das tun.</p>
+
+					<p>Zum Schluss bleibt uns nur noch, für dein Vertrauen zu danken. Wir PIRATEN (weltweit), Freundeskreise, Vereine, Schulen, Institutionen, Universitäten, Unternehmen und viele Einzelpersonen haben das Piratenpad zu einer der größten Etherpad-Instanzen weltweit gemacht. VIELEN DANK!</p>
+
+					<p>Die IT, der Bundesvorstand und viele helfende Hände</p>
+					
+					<h2>English</h2>
+					<p>We are running this service for years now. The amount of users, pads and groups is continuously growing. One could clearly say that our instance was and still is very popular.</p>
+
+					<p>But like many beautiful things, so our PADs have to come to an end. We were using the software "Etherpad Pro" but the developers stopped developing and supporting it. There are no further security updates or adaptions to new operation systems.</p>
+
+					<p>This leads to decreasing stability and security which made us search for an alternative which fits our needs better and which is more lightweight.</p>
+
+					<p>Our attention was drawn to <a href="https://cryptpad.fr/">CryptPad</a> that matches our Etherpads on a basic level, but has some really neat features like:</p>
+					<ul>
+						<li>a strong encryption of the pads and the implementation of zero-knowledge</li>
+						<li>syntax highlighting</li>
+						<li>simple Pad management via the CryptDrive</li>
+					</ul>
+
+					<p>Just take a look at <a href="https://cryptpad.piratenpartei.de">https://cryptpad.piratenpartei.de</a> and try it out.</p>
+
+					<p>You can find a short introduction to CryptPad here:<br><a href="https://wiki.piratenpartei.de/IT/CryptPad">https://wiki.piratenpartei.de/IT/CryptPad</a></p>
+
+					<p>With the CryptPads coming, the Etherpads have to leave. The timeline for that is as follows:</p>
+					<ul>
+						<li>Use the new CryptPad Instance at <a href="https://cryptpad.piratenpartei.de">https://cryptpad.piratenpartei.de</a></li>
+						<li>Backup all PADs that are currently edited, not saved elsewhere or where the content is needed in the future</li>
+						<li>Move your work to the CryptPad</li>
+						<li>On 06/16/2019 are the PADs shut down</li>
+					</ul>
+
+					<p><strong>No backup? No mercy!</strong></p>
+
+					<p>The Pad-servers will be deleted after shutting down and a short grace period. The export function helps you saving the data so it won't be lost.</p>
+
+					<p>Now go and use the new CryptPads. After a short time of getting comfortable with it you will start to like it like we do.</p>
+
+					<p>At the end we just want to say a huge thanks for your trust. We PIRATES (worldwide), friends, societies, schools, institutes, universities, companies and a lot of other people turned our Piratenpad to one of the biggest Etherpad-instances worldwide. THANK YOU VERY MUCH!</p>
+
+					<p>The IT, the federal board and a lot of helping hands</p>
 				</div>
 
 				<div class="centered chapter" id="faq">
 					<h1>FAQ</h1>
+					<h2>Deutsch</h2>
 					<h3 class="faq-headline faq-closed">
-						Was kann man damit machen?
+						Wie sichere ich meine Pads?
 					</h3>
 					<div class="faq-text">
-						Man kann Pads eigentlich immer verwenden, wenn man einen Text schreiben muss, aber einem selbst die Worte fehlen. Wenn der Text gemeinsam bearbeitet wird, kann jeder eigene Teile hinzufügen und den anderen korrigieren. So entsteht qualitativer Text. Und es macht auch viel mehr Spaß, den Text gemeinsam zu bearbeiten.
+						<p>Als Teamadministrator einer Gruppeninstanz wie https://teamname.piratenpad.de stehen dir Optionen zum Exportieren der Pads als ZIP-Archiv zur Verfügung. Diese werden nach der Anmeldung am Ende der Pad-Liste angezeigt. Bitte beachte, dass passwortgeschützte Pads nicht im Archiv enthalten sind und einzeln gesichert werden müssen. Wenn du kein Teamadministrator bist, sichere bitte die Pads einzeln.</p>
+
+						<p>Um ein Lite-Pad unter der Adresse https://piratenpad.de/p/padname zu sichern, kopierst du bitte den gesamten Inhalt des Pads in eine Textdatei auf deinem Rechner. Ein Export ist leider nicht möglich.</p>
 					</div>
 
 					<h3 class="faq-headline faq-closed">
-						Anwendungsbeispiele
+						Ich habe die Adresse oder das Passwort meines Teampads vergessen. Was soll ich tun?
 					</h3>
 					<div class="faq-text">
-						<ul>
-							<li>E-Mails/Briefe</li>
-							<li>Protokolle</li>
-							<li>Pressemitteilungen</li>
-							<li>Ideenfindungen (Organisation von Parteitagen usw.)</li>
-						</ul>
+						<p>Bitte gib deine Mail-Adresse hier ein:<br><a href="https://teams.piratenpad.de/ep/pro-account/recover">https://teams.piratenpad.de/ep/pro-account/recover</a></p>
+					</div>
+
+					<h2>English</h2>
+					<h3 class="faq-headline faq-closed">
+						How to save my pads?
+					</h3>
+					<div class="faq-text">
+						<p>As administrator of a team like https://teamname.piratenpad.de you have the possibility to export everything as one ZIP-file. You find this function at the end of the padlist. Please be aware that you have to export passwordprotected pads separately because they are not included in the ZIP-file. If you're not the administrator of team you have to save all pads one by one.</p>
+
+						<p>If you want to save a lite pad with an address like https://piratenpad.de/p/padname you have to copy the whole content of this pad into a textfile on your computer. A dedicated export is not possible.</p>
 					</div>
 
 					<h3 class="faq-headline faq-closed">
-						Wie verwende ich Piratenpad?
+						I forgot the address or password for my teampad. What should I do?
 					</h3>
 					<div class="faq-text">
-						<p>Über "Neues Pad" kannst du ein neues öffentliches Pad erstellen. Schicke nun den Personen, mit denen du das Pad bearbeiten möchtest, den Link zu diesem Pad, damit sie darauf zugreifen können. Jedoch hat jeder, der diesen Link besitzt, auch volle Schreibrechte an diesem Pad.</p>
-						
-						<p>Wenn du Pads regelmäßig verwenden möchtest, empfiehlt es sich, eine Teamseite anzulegen. Das machst du mit der Schaltfläche "Neues Team". Die Teamseite erreichst du dann über eine Subdomain deiner Wahl. Nur Leute, die du persönlich per Mail eingeladen hast, haben Zugriff auf die Pads in der Teamseite. Zudem kann man hier Pads mit Passwort schützen.</p>
-					</div>
-
-					<h3 class="faq-headline faq-closed">
-						Wie erzeuge ich Nur-Lesen-Links zu Pads?
-					</h3>
-					<div class="faq-text">		
-						<p>Bei öffentlichen Pads gibt es Optionen zum Teilen und Einbetten in der Symbolleiste.</p>
-					
-						<p>Bei Teampads klicke nacheinander auf "Time Slider", "Link to read-only page" und "Viewing latest content".<p>
-
-						<p>Diesen Link kannst du nun unbedenklich weitergeben. Die Ansicht wird automatisch aktualisiert, sobald es Änderungen am Pad gibt.</p>
+						<p>Please enter your mail address here:<br><a href="https://teams.piratenpad.de/ep/pro-account/recover">https://teams.piratenpad.de/ep/pro-account/recover</a></p>
 					</div>
 				</div>
 
